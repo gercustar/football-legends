@@ -1,0 +1,2 @@
+{ "type": "minecraft:crafting_shaped", "pattern": ["WWW","W W","X X"], "key": { "W": {"item": "minecraft:black_wool"}, "X": {"item": "minecraft:light_blue_wool"} },
+  "result": { "id": "ronaldomessi:messi_shorts" } }

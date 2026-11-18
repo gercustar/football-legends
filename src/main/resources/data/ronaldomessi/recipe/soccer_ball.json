@@ -1,0 +1,3 @@
+{ "type": "minecraft:crafting_shaped", "pattern": [" W ", "WBW", " W "],
+  "key": { "W": {"item": "minecraft:white_wool"}, "B": {"item": "minecraft:black_wool"} },
+  "result": { "id": "ronaldomessi:soccer_ball", "count": 2 } }

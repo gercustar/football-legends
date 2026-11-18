@@ -1,0 +1,1 @@
+{ "variants": { "scoring=true": { "model": "ronaldomessi:block/goal_net" }, "scoring=false": { "model": "ronaldomessi:block/goal_net" } } }

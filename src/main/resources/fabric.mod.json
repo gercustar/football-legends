@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "ronaldomessi",
+  "version": "${version}",
+  "name": "Ronaldo & Messi",
+  "description": "Роналду и Месси в Майнкрафте: мобы, футбольный мяч, форма и Золотой мяч!",
+  "authors": ["Football Fan"],
+  "license": "MIT",
+  "icon": "assets/ronaldomessi/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["ru.footballmod.RonaldoMessiMod"],
+    "client": ["ru.footballmod.client.RonaldoMessiClient"]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}

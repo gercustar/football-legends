@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": { "ball": "ronaldomessi:item/soccer_ball", "particle": "ronaldomessi:item/soccer_ball" },
+  "elements": [
+    { "from": [4, 5, 5], "to": [12, 11, 11], "faces": {
+      "north": {"uv": [0,0,16,16], "texture": "#ball"}, "south": {"uv": [0,0,16,16], "texture": "#ball"},
+      "east": {"uv": [0,0,16,16], "texture": "#ball"}, "west": {"uv": [0,0,16,16], "texture": "#ball"},
+      "up": {"uv": [0,0,16,16], "texture": "#ball"}, "down": {"uv": [0,0,16,16], "texture": "#ball"} } },
+    { "from": [5, 4, 5], "to": [11, 12, 11], "faces": {
+      "north": {"uv": [0,0,16,16], "texture": "#ball"}, "south": {"uv": [0,0,16,16], "texture": "#ball"},
+      "east": {"uv": [0,0,16,16], "texture": "#ball"}, "west": {"uv": [0,0,16,16], "texture": "#ball"},
+      "up": {"uv": [0,0,16,16], "texture": "#ball"}, "down": {"uv": [0,0,16,16], "texture": "#ball"} } },
+    { "from": [5, 5, 4], "to": [11, 11, 12], "faces": {
+      "north": {"uv": [0,0,16,16], "texture": "#ball"}, "south": {"uv": [0,0,16,16], "texture": "#ball"},
+      "east": {"uv": [0,0,16,16], "texture": "#ball"}, "west": {"uv": [0,0,16,16], "texture": "#ball"},
+      "up": {"uv": [0,0,16,16], "texture": "#ball"}, "down": {"uv": [0,0,16,16], "texture": "#ball"} } }
+  ],
+  "display": {
+    "fixed": { "rotation": [0, 0, 0], "translation": [0, 0, 0], "scale": [1, 1, 1] },
+    "gui": { "rotation": [30, 225, 0], "translation": [0, 0, 0], "scale": [1.1, 1.1, 1.1] },
+    "ground": { "rotation": [0, 0, 0], "translation": [0, 2, 0], "scale": [0.6, 0.6, 0.6] },
+    "thirdperson_righthand": { "rotation": [75, 45, 0], "translation": [0, 2.5, 0], "scale": [0.6, 0.6, 0.6] },
+    "firstperson_righthand": { "rotation": [0, 45, 0], "translation": [0, 0, 0], "scale": [0.6, 0.6, 0.6] }
+  }
+}
