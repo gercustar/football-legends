@@ -9,6 +9,7 @@ import net.minecraft.util.Rarity;
 import ru.footballmod.item.FootballArmorItem;
 import ru.footballmod.item.GoldenBallItem;
 import ru.footballmod.item.GoalItem;
+import ru.footballmod.item.*;
 import ru.footballmod.item.SoccerBallItem;
 
 public class ModItems {
@@ -29,6 +30,14 @@ public class ModItems {
     public static final Item MESSI_SHORTS = armor("messi_shorts", ModArmorMaterials.MESSI, ArmorItem.Type.LEGGINGS);
     public static final Item MESSI_BOOTS = armor("messi_boots", ModArmorMaterials.MESSI, ArmorItem.Type.BOOTS);
 
+    // --- Экипировка (Этап 3) ---
+    public static final Item MERCURIAL_BOOTS = boots("mercurial_boots", ModArmorMaterials.MERCURIAL, FootballBootsItem.BootType.SPEED);
+    public static final Item F50_BOOTS = boots("f50_boots", ModArmorMaterials.F50, FootballBootsItem.BootType.DRIBBLE);
+    public static final Item PREDATOR_BOOTS = boots("predator_boots", ModArmorMaterials.PREDATOR, FootballBootsItem.BootType.POWER);
+    public static final Item CAPTAIN_ARMBAND = register("captain_armband", new CaptainArmbandItem(new Item.Settings().maxCount(1).rarity(Rarity.RARE)));
+    public static final Item SHIN_GUARDS = register("shin_guards", new ShinGuardsItem(new Item.Settings().maxCount(16)));
+    public static final Item ENERGY_DRINK = register("energy_drink", new EnergyDrinkItem(new Item.Settings().maxCount(16)));
+
     public static final ItemGroup GROUP = Registry.register(Registries.ITEM_GROUP, RonaldoMessiMod.id("main"),
             FabricItemGroup.builder()
                     .icon(() -> new ItemStack(SOCCER_BALL))
@@ -47,12 +56,24 @@ public class ModItems {
                         e.add(MESSI_JERSEY);
                         e.add(MESSI_SHORTS);
                         e.add(MESSI_BOOTS);
+                        e.add(MERCURIAL_BOOTS);
+                        e.add(F50_BOOTS);
+                        e.add(PREDATOR_BOOTS);
+                        e.add(CAPTAIN_ARMBAND);
+                        e.add(SHIN_GUARDS);
+                        e.add(ENERGY_DRINK);
+                        e.add(ModBlocks.TRAINING_CONE);
                     })
                     .build());
 
     private static Item armor(String name, net.minecraft.registry.entry.RegistryEntry<ArmorMaterial> mat, ArmorItem.Type type) {
         return register(name, new FootballArmorItem(mat, type,
                 new Item.Settings().maxDamage(type.getMaxDamage(25))));
+    }
+
+    private static Item boots(String name, net.minecraft.registry.entry.RegistryEntry<ArmorMaterial> mat, FootballBootsItem.BootType t) {
+        return register(name, new FootballBootsItem(mat, t,
+                new Item.Settings().maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(25))));
     }
 
     private static Item register(String name, Item item) {

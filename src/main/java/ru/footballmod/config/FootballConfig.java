@@ -42,6 +42,26 @@ public class FootballConfig {
     /** Шанс выпадения Золотого мяча, если футболиста победил не соперник. */
     public float goldenBallDropChance = 0.4f;
 
+    // --- Бутсы ---
+    /** Mercurial: прибавка к скорости бега (0.15 = +15%). */
+    public double mercurialSpeedBonus = 0.15;
+    /** F50: небольшая прибавка к скорости. */
+    public double f50SpeedBonus = 0.05;
+    /** F50: сила толчка мяча при ведении (меньше — мяч ближе к ногам). */
+    public double f50DribblePush = 0.32;
+    /** Predator: множитель силы удара. */
+    public double predatorKickMultiplier = 1.3;
+
+    // --- Экипировка ---
+    /** Радиус, в котором капитан ускоряет игроков рядом. */
+    public double captainAuraRadius = 10.0;
+    public double shinGuardsKnockbackResistance = 0.4;
+    public double shinGuardsArmor = 2.0;
+    /** Длительность энергетика (тики). */
+    public int energyDrinkDuration = 400;
+    /** Перезарядка энергетика (тики). */
+    public int energyDrinkCooldown = 900;
+
     // --- Предметы ---
     /** Перезарядка Золотого мяча (тики). */
     public int goldenBallCooldown = 1200;

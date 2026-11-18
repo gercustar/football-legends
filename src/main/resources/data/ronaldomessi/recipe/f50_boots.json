@@ -1,0 +1,1 @@
+{ "type": "minecraft:crafting_shaped", "pattern": ["W W","WSW","B B"], "key": {"W": {"item": "minecraft:yellow_wool"}, "S": {"item": "minecraft:slime_ball"}, "B": {"item": "minecraft:black_wool"}}, "result": {"id": "ronaldomessi:f50_boots"} }

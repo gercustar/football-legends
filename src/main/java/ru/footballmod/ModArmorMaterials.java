@@ -15,6 +15,10 @@ import java.util.List;
 public class ModArmorMaterials {
     public static final RegistryEntry<ArmorMaterial> RONALDO = register("ronaldo");
     public static final RegistryEntry<ArmorMaterial> MESSI = register("messi");
+    // Бутсы — у каждой пары своя текстура на ногах
+    public static final RegistryEntry<ArmorMaterial> MERCURIAL = register("mercurial");
+    public static final RegistryEntry<ArmorMaterial> F50 = register("f50");
+    public static final RegistryEntry<ArmorMaterial> PREDATOR = register("predator");
 
     private static RegistryEntry<ArmorMaterial> register(String name) {
         EnumMap<ArmorItem.Type, Integer> defense = new EnumMap<>(ArmorItem.Type.class);

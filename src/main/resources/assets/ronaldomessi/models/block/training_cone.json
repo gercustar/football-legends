@@ -1,0 +1,18 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": { "cone": "ronaldomessi:block/training_cone", "particle": "ronaldomessi:block/training_cone" },
+  "elements": [
+    { "from": [2, 0, 2], "to": [14, 1, 14], "faces": {
+      "up": {"uv": [2,2,14,14], "texture": "#cone"}, "down": {"uv": [2,2,14,14], "texture": "#cone", "cullface": "down"},
+      "north": {"uv": [2,15,14,16], "texture": "#cone"}, "south": {"uv": [2,15,14,16], "texture": "#cone"},
+      "east": {"uv": [2,15,14,16], "texture": "#cone"}, "west": {"uv": [2,15,14,16], "texture": "#cone"} } },
+    { "from": [5, 1, 5], "to": [11, 6, 11], "faces": {
+      "up": {"uv": [5,5,11,11], "texture": "#cone"},
+      "north": {"uv": [5,10,11,15], "texture": "#cone"}, "south": {"uv": [5,10,11,15], "texture": "#cone"},
+      "east": {"uv": [5,10,11,15], "texture": "#cone"}, "west": {"uv": [5,10,11,15], "texture": "#cone"} } },
+    { "from": [6.5, 6, 6.5], "to": [9.5, 10, 9.5], "faces": {
+      "up": {"uv": [6,0,9,3], "texture": "#cone"},
+      "north": {"uv": [6,5,9,9], "texture": "#cone"}, "south": {"uv": [6,5,9,9], "texture": "#cone"},
+      "east": {"uv": [6,5,9,9], "texture": "#cone"}, "west": {"uv": [6,5,9,9], "texture": "#cone"} } }
+  ]
+}

@@ -19,6 +19,10 @@ public class ModBlocks {
             .allowsSpawning((s, w, p, t) -> false).solidBlock((s, w, p) -> false)
             .suffocates((s, w, p) -> false).blockVision((s, w, p) -> false)));
 
+    public static final Block TRAINING_CONE = register("training_cone", new ru.footballmod.block.TrainingConeBlock(
+            AbstractBlock.Settings.create().mapColor(MapColor.ORANGE).strength(0.2f).sounds(BlockSoundGroup.WOOL)
+                    .nonOpaque().noCollision()));
+
     private static Block register(String name, Block block) {
         Registry.register(Registries.BLOCK, RonaldoMessiMod.id(name), block);
         Registry.register(Registries.ITEM, RonaldoMessiMod.id(name), new BlockItem(block, new Item.Settings()));

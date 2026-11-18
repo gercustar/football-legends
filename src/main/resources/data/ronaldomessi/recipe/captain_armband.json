@@ -1,0 +1,1 @@
+{ "type": "minecraft:crafting_shaped", "pattern": ["YYY","YGY","YYY"], "key": {"Y": {"item": "minecraft:yellow_wool"}, "G": {"item": "minecraft:gold_ingot"}}, "result": {"id": "ronaldomessi:captain_armband"} }

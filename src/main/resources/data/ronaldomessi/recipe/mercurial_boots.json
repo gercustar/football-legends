@@ -1,0 +1,1 @@
+{ "type": "minecraft:crafting_shaped", "pattern": ["W W","WSW","F F"], "key": {"W": {"item": "minecraft:pink_wool"}, "S": {"item": "minecraft:sugar"}, "F": {"item": "minecraft:feather"}}, "result": {"id": "ronaldomessi:mercurial_boots"} }

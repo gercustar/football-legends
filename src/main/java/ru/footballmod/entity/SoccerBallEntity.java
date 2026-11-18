@@ -160,6 +160,18 @@ public class SoccerBallEntity extends Entity {
                 Vec3d dir = new Vec3d(look.x, 0, look.z).normalize();
                 var cfg = ru.footballmod.config.FootballConfig.get();
                 double power = cfg.playerKickPower * (attacker.isSprinting() ? cfg.sprintKickMultiplier : 1.0);
+                if (attacker instanceof PlayerEntity p
+                        && ru.footballmod.item.FootballBootsItem.typeOf(p) == ru.footballmod.item.FootballBootsItem.BootType.POWER) {
+                    // Predator: удар сильнее и точно по взгляду (с учётом высоты)
+                    power *= cfg.predatorKickMultiplier;
+                    Vec3d aim = look.normalize();
+                    lastKicker = attacker;
+                    setVelocity(aim.x * power, Math.max(0.15, aim.y * power + 0.15), aim.z * power);
+                    velocityModified = true;
+                    getWorld().playSound(null, getX(), getY(), getZ(), SoundEvents.ENTITY_PLAYER_ATTACK_STRONG,
+                            SoundCategory.NEUTRAL, 1.0f, 1.0f);
+                    return true;
+                }
                 kick(dir, power, attacker);
             } else if (source.getPosition() != null) {
                 Vec3d dir = getPos().subtract(source.getPosition());
@@ -175,6 +187,18 @@ public class SoccerBallEntity extends Entity {
         // Дриблинг: подходишь к мячу — он катится вперёд
         if (getWorld().isClient) return;
         Vec3d v = getVelocity();
+        if (ru.footballmod.item.FootballBootsItem.typeOf(player) == ru.footballmod.item.FootballBootsItem.BootType.DRIBBLE) {
+            // F50: мяч «прилипает» — катится туда, куда смотрит игрок, чуть впереди него
+            if (v.horizontalLengthSquared() > 0.16) return;
+            Vec3d look = player.getRotationVector();
+            Vec3d dir = new Vec3d(look.x, 0, look.z);
+            if (dir.lengthSquared() < 1.0e-4) return;
+            dir = dir.normalize().multiply(ru.footballmod.config.FootballConfig.get().f50DribblePush);
+            setVelocity(dir.x, 0.02, dir.z);
+            velocityModified = true;
+            lastKicker = player;
+            return;
+        }
         if (v.horizontalLengthSquared() > 0.04) return;
         Vec3d d = getPos().subtract(player.getPos());
         d = new Vec3d(d.x, 0, d.z);
