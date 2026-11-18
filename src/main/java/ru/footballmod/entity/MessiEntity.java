@@ -19,8 +19,8 @@ public class MessiEntity extends FootballerEntity {
     }
 
     @Override
-    protected Class<? extends FootballerEntity> rivalClass() {
-        return RonaldoEntity.class;
+    public Team team() {
+        return Team.BARCELONA;
     }
 
     @Override

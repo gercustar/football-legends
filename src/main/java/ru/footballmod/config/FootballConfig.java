@@ -39,6 +39,12 @@ public class FootballConfig {
     public int mobAbilityCooldownRandom = 80;
     /** Шанс Месси увернуться от удара (0..1). */
     public float messiDodgeChance = 0.25f;
+    /** Шанс Неймара «упасть» от удара без урона (0..1). */
+    public float neymarDiveChance = 0.3f;
+    /** Шанс, что Рамос получит красную карточку после подката (0..1). */
+    public float ramosRedCardChance = 0.15f;
+    /** Вес естественного появления новых легенд в мире (0 — не появляются). */
+    public int legendsSpawnWeight = 2;
     /** Шанс выпадения Золотого мяча, если футболиста победил не соперник. */
     public float goldenBallDropChance = 0.4f;
 

@@ -22,8 +22,11 @@ import ru.footballmod.ModItems;
 import java.util.EnumSet;
 import java.util.List;
 
-/** Общая логика для Роналду и Месси. */
+/** Общая логика всех футболистов-легенд. */
 public abstract class FootballerEntity extends PathAwareEntity {
+    /** Команда: футболисты дерутся с чужой командой и помогают своей. */
+    public enum Team { REAL_MADRID, BARCELONA }
+
     private int abilityCooldown = 60;
 
     protected FootballerEntity(EntityType<? extends FootballerEntity> type, World world) {
@@ -32,16 +35,36 @@ public abstract class FootballerEntity extends PathAwareEntity {
     }
 
     public static DefaultAttributeContainer.Builder createFootballerAttributes() {
+        return attributes(60.0, 0.3, 5.0, 0.0);
+    }
+
+    /** Характеристики футболиста: здоровье, скорость, урон, броня. */
+    public static DefaultAttributeContainer.Builder attributes(double health, double speed, double damage, double armor) {
         return MobEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 60.0)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5.0)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, health)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, speed)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, damage)
+                .add(EntityAttributes.GENERIC_ARMOR, armor)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 32.0)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 0.3);
     }
 
-    /** Класс соперника, с которым этот футболист будет драться. */
-    protected abstract Class<? extends FootballerEntity> rivalClass();
+    /** Команда этого футболиста. */
+    public abstract Team team();
+
+    public boolean isOpponent(Entity other) {
+        return other instanceof FootballerEntity f && f.team() != team() && f.isAlive();
+    }
+
+    public boolean isTeammate(Entity other) {
+        return other != this && other instanceof FootballerEntity f && f.team() == team() && f.isAlive();
+    }
+
+    /** Ближайшие живые футболисты чужой (opponents=true) или своей команды. */
+    protected List<FootballerEntity> nearbyFootballers(double radius, boolean opponents) {
+        return getWorld().getEntitiesByClass(FootballerEntity.class, getBoundingBox().expand(radius),
+                e -> opponents ? isOpponent(e) : isTeammate(e));
+    }
 
     /** Суперспособность против цели. */
     protected abstract void useSpecialAbility(LivingEntity target);
@@ -59,7 +82,7 @@ public abstract class FootballerEntity extends PathAwareEntity {
         this.goalSelector.add(7, new LookAroundGoal(this));
 
         this.targetSelector.add(1, new RevengeGoal(this));
-        this.targetSelector.add(2, new ActiveTargetGoal<>(this, rivalClass(), true));
+        this.targetSelector.add(2, new ActiveTargetGoal<>(this, FootballerEntity.class, 10, true, false, this::isOpponent));
     }
 
     @Override
@@ -92,8 +115,7 @@ public abstract class FootballerEntity extends PathAwareEntity {
     public void kickBall(SoccerBallEntity ball) {
         Vec3d dir;
         BlockPos goal = findNearestGoal();
-        List<? extends FootballerEntity> rivals = getWorld().getEntitiesByClass(rivalClass(),
-                getBoundingBox().expand(32), Entity::isAlive);
+        List<FootballerEntity> rivals = nearbyFootballers(32, true);
         if (goal != null) {
             Vec3d d = Vec3d.ofCenter(goal).subtract(getPos());
             dir = new Vec3d(d.x, 0, d.z).normalize();
@@ -105,6 +127,15 @@ public abstract class FootballerEntity extends PathAwareEntity {
         }
         swingHand(net.minecraft.util.Hand.MAIN_HAND);
         ball.kick(dir, kickPower(), this);
+    }
+
+    /** Направление к ближайшим воротам или null, если их нет рядом. */
+    @org.jetbrains.annotations.Nullable
+    protected Vec3d dirToGoal() {
+        BlockPos goal = findNearestGoal();
+        if (goal == null) return null;
+        Vec3d d = Vec3d.ofCenter(goal).subtract(getPos());
+        return new Vec3d(d.x, 0, d.z).normalize();
     }
 
     /** Ближайшая задняя сетка ворот в радиусе 20 блоков — туда футболист бьёт по мячу. */
