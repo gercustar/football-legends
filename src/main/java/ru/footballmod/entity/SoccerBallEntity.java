@@ -158,7 +158,8 @@ public class SoccerBallEntity extends Entity {
             if (attacker != null) {
                 Vec3d look = attacker.getRotationVector();
                 Vec3d dir = new Vec3d(look.x, 0, look.z).normalize();
-                double power = attacker.isSprinting() ? 1.5 : 1.0;
+                var cfg = ru.footballmod.config.FootballConfig.get();
+                double power = cfg.playerKickPower * (attacker.isSprinting() ? cfg.sprintKickMultiplier : 1.0);
                 kick(dir, power, attacker);
             } else if (source.getPosition() != null) {
                 Vec3d dir = getPos().subtract(source.getPosition());

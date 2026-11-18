@@ -24,7 +24,7 @@ public class RonaldoEntity extends FootballerEntity {
 
     @Override
     protected double kickPower() {
-        return 1.6;
+        return ru.footballmod.config.FootballConfig.get().ronaldoKickPower;
     }
 
     @Override

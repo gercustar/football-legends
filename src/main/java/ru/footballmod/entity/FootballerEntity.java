@@ -69,7 +69,8 @@ public abstract class FootballerEntity extends PathAwareEntity {
         LivingEntity target = getTarget();
         if (abilityCooldown <= 0 && target != null && target.isAlive() && squaredDistanceTo(target) < 100) {
             useSpecialAbility(target);
-            abilityCooldown = 100 + random.nextInt(80);
+            var cfg = ru.footballmod.config.FootballConfig.get();
+            abilityCooldown = cfg.mobAbilityCooldownMin + random.nextInt(Math.max(1, cfg.mobAbilityCooldownRandom));
         }
     }
 
@@ -139,7 +140,7 @@ public abstract class FootballerEntity extends PathAwareEntity {
         super.dropLoot(source, causedByPlayer);
         dropStack(new ItemStack(ModItems.SOCCER_BALL));
         boolean rivalKill = source.getAttacker() instanceof FootballerEntity;
-        if (rivalKill || random.nextFloat() < 0.4f) {
+        if (rivalKill || random.nextFloat() < ru.footballmod.config.FootballConfig.get().goldenBallDropChance) {
             dropStack(new ItemStack(ModItems.GOLDEN_BALL));
         }
     }

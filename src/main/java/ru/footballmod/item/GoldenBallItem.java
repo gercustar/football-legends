@@ -32,7 +32,7 @@ public class GoldenBallItem extends Item {
             user.sendMessage(Text.translatable("msg.ronaldomessi.golden_ball").formatted(Formatting.GOLD), true);
         }
         user.playSound(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, 0.7f, 1.0f);
-        user.getItemCooldownManager().set(this, 1200);
+        user.getItemCooldownManager().set(this, ru.footballmod.config.FootballConfig.get().goldenBallCooldown);
         return TypedActionResult.success(stack, world.isClient);
     }
 

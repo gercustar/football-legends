@@ -25,7 +25,7 @@ public class MessiEntity extends FootballerEntity {
 
     @Override
     protected double kickPower() {
-        return 1.3;
+        return ru.footballmod.config.FootballConfig.get().messiKickPower;
     }
 
     @Override
@@ -44,7 +44,7 @@ public class MessiEntity extends FootballerEntity {
     @Override
     public boolean damage(DamageSource source, float amount) {
         // 25% шанс обвести удар — как дриблинг Месси
-        if (!getWorld().isClient && source.getAttacker() != null && random.nextFloat() < 0.25f) {
+        if (!getWorld().isClient && source.getAttacker() != null && random.nextFloat() < ru.footballmod.config.FootballConfig.get().messiDodgeChance) {
             Vec3d away = horizontalDirTo(source.getAttacker());
             setVelocity(-away.z * 0.8, 0.2, away.x * 0.8); // шаг вбок
             velocityModified = true;
