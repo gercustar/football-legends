@@ -1,0 +1,1 @@
+{"type": "minecraft:crafting_shaped", "pattern": ["W W", "WXW", "XWX"], "key": {"W": {"item": "minecraft:blue_wool"}, "X": {"item": "minecraft:red_wool"}}, "result": {"id": "ronaldomessi:barca_jersey"}}

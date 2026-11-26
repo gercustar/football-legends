@@ -1,0 +1,1 @@
+{"type": "minecraft:crafting_shaped", "pattern": ["WLW", "GSG", "BBB"], "key": {"W": {"item": "minecraft:white_concrete"}, "L": {"item": "minecraft:sea_lantern"}, "G": {"item": "ronaldomessi:goal"}, "S": {"item": "ronaldomessi:soccer_ball"}, "B": {"item": "minecraft:stone_bricks"}}, "result": {"id": "ronaldomessi:stadium_kit"}}

@@ -2,6 +2,7 @@ package ru.footballmod.entity;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -23,8 +24,20 @@ public class MessiEntity extends FootballerEntity {
         return Team.BARCELONA;
     }
 
+    public static final int ARGENTINA_2022 = 0, BARCA_2012 = 1;
+
+    @Override public int variantCount() { return 2; }
+    @Override protected String variantSuffix(int v) { return "2012"; }
+
+    @Override
+    protected void applyVariantStats(int v) {
+        // 2012 (91 гол за год): быстрее и сильнее удар
+        setBase(EntityAttributes.GENERIC_MOVEMENT_SPEED, v == BARCA_2012 ? 0.33 : 0.3);
+    }
+
     @Override
     protected double kickPower() {
+        if (getVariant() == BARCA_2012) return ru.footballmod.config.FootballConfig.get().messiKickPower * 1.2;
         return ru.footballmod.config.FootballConfig.get().messiKickPower;
     }
 
@@ -44,7 +57,8 @@ public class MessiEntity extends FootballerEntity {
     @Override
     public boolean damage(DamageSource source, float amount) {
         // 25% шанс обвести удар — как дриблинг Месси
-        if (!getWorld().isClient && source.getAttacker() != null && random.nextFloat() < ru.footballmod.config.FootballConfig.get().messiDodgeChance) {
+        float dodge = ru.footballmod.config.FootballConfig.get().messiDodgeChance + (getVariant() == BARCA_2012 ? 0.1f : 0f);
+        if (!getWorld().isClient && source.getAttacker() != null && random.nextFloat() < dodge) {
             Vec3d away = horizontalDirTo(source.getAttacker());
             setVelocity(-away.z * 0.8, 0.2, away.x * 0.8); // шаг вбок
             velocityModified = true;

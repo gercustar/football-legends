@@ -1,0 +1,1 @@
+{"type": "minecraft:crafting_shaped", "pattern": ["W W", "X X"], "key": {"W": {"item": "minecraft:white_wool"}, "X": {"item": "minecraft:purple_wool"}}, "result": {"id": "ronaldomessi:real_boots"}}

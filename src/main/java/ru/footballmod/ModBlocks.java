@@ -23,6 +23,9 @@ public class ModBlocks {
             AbstractBlock.Settings.create().mapColor(MapColor.ORANGE).strength(0.2f).sounds(BlockSoundGroup.WOOL)
                     .nonOpaque().noCollision()));
 
+    public static final Block MATCH_BOARD = register("match_board", new ru.footballmod.block.MatchBoardBlock(
+            AbstractBlock.Settings.create().mapColor(MapColor.BLACK).strength(1.5f).sounds(BlockSoundGroup.METAL)));
+
     private static Block register(String name, Block block) {
         Registry.register(Registries.BLOCK, RonaldoMessiMod.id(name), block);
         Registry.register(Registries.ITEM, RonaldoMessiMod.id(name), new BlockItem(block, new Item.Settings()));

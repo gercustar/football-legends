@@ -47,20 +47,6 @@ public class ModricEntity extends FootballerEntity {
 
     @Override
     public void kickBall(SoccerBallEntity ball) {
-        FootballerEntity best = null;
-        double bestD = 20 * 20;
-        for (FootballerEntity mate : nearbyFootballers(20, false)) {
-            double d = mate.squaredDistanceTo(this);
-            if (d > 9 && d < bestD) { bestD = d; best = mate; }
-        }
-        if (best == null) {
-            super.kickBall(ball);
-            return;
-        }
-        // Точный пас: сила зависит от расстояния до партнёра
-        Vec3d dir = horizontalDirTo(best);
-        double power = Math.min(1.4, 0.45 + Math.sqrt(bestD) * 0.06);
-        swingHand(net.minecraft.util.Hand.MAIN_HAND);
-        ball.kick(dir, power, this);
+        if (!passToNearestTeammate(ball)) super.kickBall(ball);
     }
 }

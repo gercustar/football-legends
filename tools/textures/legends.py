@@ -15,6 +15,14 @@ FONT.update({
 'C':[".####","#....","#....","#....","#....","#....",".####"],
 ' ':["..","..","..","..","..","..",".."],
 '4':["...#.","..##.",".#.#.","#..#.","#####","...#.","...#."],
+'X':["#...#","#...#",".#.#.","..#..",".#.#.","#...#","#...#"],
+'V':["#...#","#...#","#...#","#...#","#...#",".#.#.","..#.."],
+'U':["#...#","#...#","#...#","#...#","#...#","#...#",".###."],
+'T':["#####","..#..","..#..","..#..","..#..","..#..","..#.."],
+'5':["#####","#....","####.","....#","....#","#...#",".###."],
+'6':[".###.","#....","#....","####.","#...#","#...#",".###."],
+'8':[".###.","#...#","#...#",".###.","#...#","#...#",".###."],
+'9':[".###.","#...#","#...#",".####","....#","....#",".###."],
 })
 def solid(col, alt=None, period=None):
     def f(face,X,Y,fw,fh):
@@ -37,7 +45,13 @@ K=dict(
  modric=dict(shirt=solid(CRO_R,WHITE,8),collar=C('0b2f8a'),collar2=CRO_R,cuff=C('0b2f8a'),cuff2=WHITE,shorts=WHITE,shorts_stripe=CRO_R,
    sock=C('0b2f8a'),sock_band=CRO_R,boot=C('ff7a00'),boot2=C('7a3a00'),name='MODRIC',num='10',numcol=C('0b2f8a'),numout=WHITE,stars=0),
  ramos=dict(shirt=solid(SPA_R),collar=SPA_Y,collar2=SPA_R,cuff=SPA_Y,cuff2=SPA_R,shorts=C('1f2a6b'),shorts_stripe=SPA_Y,
-   sock=SPA_R,sock_band=SPA_Y,boot=C('101010'),boot2=C('ffffff'),name='RAMOS',num='4',numcol=SPA_Y,numout=C('5a0008'),stars=1),
+   sock=SPA_R,sock_band=SPA_Y,boot=C('101010'),boot2=C('ffffff'),name='RAMOS',num='15',numcol=SPA_Y,numout=C('5a0008'),stars=1),
+ xavi=dict(shirt=solid(SPA_R),collar=SPA_Y,collar2=SPA_R,cuff=SPA_Y,cuff2=SPA_R,shorts=C('1f2a6b'),shorts_stripe=SPA_Y,
+   sock=SPA_R,sock_band=SPA_Y,boot=C('f5f5f5'),boot2=C('b0b0b0'),name='XAVI',num='8',numcol=SPA_Y,numout=C('5a0008'),stars=1),
+ iniesta=dict(shirt=solid(SPA_R),collar=SPA_Y,collar2=SPA_R,cuff=SPA_Y,cuff2=SPA_R,shorts=C('1f2a6b'),shorts_stripe=SPA_Y,
+   sock=SPA_R,sock_band=SPA_Y,boot=C('2f6bff'),boot2=C('14307a'),name='INIESTA',num='6',numcol=SPA_Y,numout=C('5a0008'),stars=1),
+ suarez=dict(shirt=solid(C('5cbfeb')),collar=WHITE,collar2=C('111111'),cuff=WHITE,cuff2=C('5cbfeb'),shorts=C('161616'),shorts_stripe=C('5cbfeb'),
+   sock=C('161616'),sock_band=C('5cbfeb'),boot=C('d7ff1f'),boot2=C('5a6a00'),name='SUAREZ',num='9',numcol=WHITE,numout=C('111111'),stars=4),
 )
 EYE=C('2a1a10'); W=C('ffffff')
 def head(skin,hair,style,beard=None,eye=EYE,teeth=False,band=None):
@@ -120,4 +134,7 @@ legend_skin('ronaldinho', C('8a5a3a'), C('120c08'), 'curly', teeth=True, band=C(
 legend_skin('neymar',  C('b07a52'), C('c9a24a'), 'mohawk', beard=None)
 legend_skin('modric',  C('efc7a6'), C('8a6a40'), 'long')
 legend_skin('ramos',   C('d2a07a'), C('2a1c14'), 'long', beard=C('2a1c14'), tattoo=C('3a3a5a'))
+legend_skin('xavi',    C('d9aa84'), C('2a1c14'), 'short')
+legend_skin('iniesta', C('f0cdb0'), C('6a5238'), 'buzz')
+legend_skin('suarez',  C('c9966c'), C('1c120c'), 'short', teeth=True)
 print('ok')

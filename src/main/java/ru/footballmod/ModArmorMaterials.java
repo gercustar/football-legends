@@ -15,6 +15,10 @@ import java.util.List;
 public class ModArmorMaterials {
     public static final RegistryEntry<ArmorMaterial> RONALDO = register("ronaldo");
     public static final RegistryEntry<ArmorMaterial> MESSI = register("messi");
+    // Клубные формы (Этап 8)
+    public static final RegistryEntry<ArmorMaterial> REAL = register("real");
+    public static final RegistryEntry<ArmorMaterial> BARCA = register("barca");
+    public static final RegistryEntry<ArmorMaterial> UNITED = register("united");
     // Бутсы — у каждой пары своя текстура на ногах
     public static final RegistryEntry<ArmorMaterial> MERCURIAL = register("mercurial");
     public static final RegistryEntry<ArmorMaterial> F50 = register("f50");

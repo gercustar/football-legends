@@ -24,8 +24,16 @@ public class GoalItem extends Item {
         if (world.isClient) return ActionResult.SUCCESS;
 
         Direction forward = ctx.getHorizontalPlayerFacing();
-        Direction side = forward.rotateYClockwise();
         BlockPos origin = ctx.getBlockPos().up().offset(forward, 2);
+        placeGoal(world, origin, forward);
+        world.playSound(null, origin, BlockSoundGroup.METAL.getPlaceSound(), SoundCategory.BLOCKS, 1.0f, 1.0f);
+        if (ctx.getPlayer() != null) ctx.getStack().decrementUnlessCreative(1, ctx.getPlayer());
+        return ActionResult.CONSUME;
+    }
+
+    /** Ворота 7×4: штанги на origin, сетка позади (в сторону forward). */
+    public static void placeGoal(World world, BlockPos origin, Direction forward) {
+        Direction side = forward.rotateYClockwise();
 
         BlockState post = ModBlocks.GOAL_POST.getDefaultState();
         BlockState backNet = ModBlocks.GOAL_NET.getDefaultState().with(GoalNetBlock.SCORING, true);
@@ -49,8 +57,5 @@ public class GoalItem extends Item {
                 }
             }
         }
-        world.playSound(null, origin, BlockSoundGroup.METAL.getPlaceSound(), SoundCategory.BLOCKS, 1.0f, 1.0f);
-        if (ctx.getPlayer() != null) ctx.getStack().decrementUnlessCreative(1, ctx.getPlayer());
-        return ActionResult.CONSUME;
     }
 }

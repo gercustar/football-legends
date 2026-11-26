@@ -64,6 +64,36 @@ public class ModEntities {
             EntityType.Builder.create(RamosEntity::new, SpawnGroup.CREATURE)
                     .dimensions(0.6f, 1.9f).eyeHeight(1.62f).maxTrackingRange(10).build("ramos"));
 
+    public static final EntityType<XaviEntity> XAVI = Registry.register(Registries.ENTITY_TYPE,
+            RonaldoMessiMod.id("xavi"),
+            EntityType.Builder.create(XaviEntity::new, SpawnGroup.CREATURE)
+                    .dimensions(0.6f, 1.75f).eyeHeight(1.5f).maxTrackingRange(10).build("xavi"));
+
+    public static final EntityType<IniestaEntity> INIESTA = Registry.register(Registries.ENTITY_TYPE,
+            RonaldoMessiMod.id("iniesta"),
+            EntityType.Builder.create(IniestaEntity::new, SpawnGroup.CREATURE)
+                    .dimensions(0.6f, 1.75f).eyeHeight(1.5f).maxTrackingRange(10).build("iniesta"));
+
+    public static final EntityType<SuarezEntity> SUAREZ = Registry.register(Registries.ENTITY_TYPE,
+            RonaldoMessiMod.id("suarez"),
+            EntityType.Builder.create(SuarezEntity::new, SpawnGroup.CREATURE)
+                    .dimensions(0.6f, 1.85f).eyeHeight(1.62f).maxTrackingRange(10).build("suarez"));
+
+    public static final EntityType<RefereeEntity> REFEREE = Registry.register(Registries.ENTITY_TYPE,
+            RonaldoMessiMod.id("referee"),
+            EntityType.Builder.create(RefereeEntity::new, SpawnGroup.MISC)
+                    .dimensions(0.6f, 1.8f).eyeHeight(1.6f).maxTrackingRange(10).build("referee"));
+
+    public static final EntityType<GoalkeeperEntity> GOALKEEPER = Registry.register(Registries.ENTITY_TYPE,
+            RonaldoMessiMod.id("goalkeeper"),
+            EntityType.Builder.create(GoalkeeperEntity::new, SpawnGroup.MISC)
+                    .dimensions(0.6f, 1.9f).eyeHeight(1.65f).maxTrackingRange(10).build("goalkeeper"));
+
+    public static final EntityType<CoachEntity> COACH = Registry.register(Registries.ENTITY_TYPE,
+            RonaldoMessiMod.id("coach"),
+            EntityType.Builder.create(CoachEntity::new, SpawnGroup.MISC)
+                    .dimensions(0.6f, 1.85f).eyeHeight(1.6f).maxTrackingRange(10).build("coach"));
+
     public static void init() {
         FabricDefaultAttributeRegistry.register(RONALDO, FootballerEntity.createFootballerAttributes());
         FabricDefaultAttributeRegistry.register(MESSI, FootballerEntity.createFootballerAttributes());
@@ -82,6 +112,13 @@ public class ModEntities {
         legend(MBAPPE, FootballerEntity.attributes(55.0, 0.36, 5.0, 0.0));
         legend(MODRIC, FootballerEntity.attributes(55.0, 0.30, 4.0, 0.0));
         legend(RAMOS, FootballerEntity.attributes(80.0, 0.28, 7.0, 6.0));
+        legend(XAVI, FootballerEntity.attributes(60.0, 0.30, 5.0, 1.0));
+        legend(INIESTA, FootballerEntity.attributes(60.0, 0.31, 5.0, 2.0));
+        // Судья и вратарь серии не появляются сами — их приводит табло
+        FabricDefaultAttributeRegistry.register(COACH, FootballerEntity.attributes(40.0, 0.25, 0.0, 0.0));
+        FabricDefaultAttributeRegistry.register(GOALKEEPER, FootballerEntity.attributes(40.0, 0.3, 0.0, 0.0));
+        FabricDefaultAttributeRegistry.register(REFEREE, FootballerEntity.attributes(40.0, 0.3, 0.0, 0.0));
+        legend(SUAREZ, FootballerEntity.attributes(65.0, 0.30, 6.0, 3.0));
     }
 
     private static <T extends FootballerEntity> void legend(EntityType<T> type,
